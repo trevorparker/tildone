@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'mercenary'
+require 'tildone'
+
+Mercenary.program(:td) do |p|
+  p.version Tildone::VERSION
+  p.description 'A simple task management framework'
+
+  p.command(:list) do |c|
+    c.syntax 'td list [options]'
+    c.description 'Lists outstanding tasks'
+
+    c.option 'file', '--file FILE', 'Location of the tildone tasks file'
+
+    c.action do |_, options|
+      Tildone::List.new(options)
+    end
+  end
+
+  p.default_command(:list)
+end
