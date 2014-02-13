@@ -1,3 +1,6 @@
 module Tildone
-  VERSION = '0.0.1'
+  # Version information for Tildone
+  module Version
+    STRING = '0.0.1'
+  end
 end

@@ -1,3 +1,4 @@
+require 'fakefs/spec_helpers'
 require 'tildone'
 
 RSpec.configure do |config|

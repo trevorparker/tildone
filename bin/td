@@ -4,7 +4,7 @@ require 'mercenary'
 require 'tildone'
 
 Mercenary.program(:td) do |p|
-  p.version Tildone::VERSION
+  p.version Tildone::Version::STRING
   p.description 'A simple task management framework'
 
   p.command(:list) do |c|
@@ -14,7 +14,7 @@ Mercenary.program(:td) do |p|
     c.option 'file', '--file FILE', 'Location of the tildone tasks file'
 
     c.action do |_, options|
-      Tildone::List.new(options)
+      puts Tildone::List.new(options).tasks
     end
   end
 

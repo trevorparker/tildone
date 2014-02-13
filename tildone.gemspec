@@ -5,7 +5,7 @@ require 'tildone/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'tildone'
-  spec.version       = Tildone::VERSION
+  spec.version       = Tildone::Version::STRING
   spec.authors       = ['Trevor Parker']
   spec.email         = ['trevor@trevorparker.com']
   spec.summary       = %q{A simple task management framework.}
@@ -21,6 +21,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'mercenary'
 
   spec.add_development_dependency 'bundler', '~> 1.5'
+  spec.add_development_dependency 'fakefs'
   spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'rspec'
 end
