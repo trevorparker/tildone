@@ -7,15 +7,14 @@ describe(Tildone::List) do
   let(:tasks_file) do
     "
     - Task one:
+        complete: true
         items:
-        - ItemA
-        - ItemB
-        - ItemC
+          - ItemA
+          - ItemB
+          - ItemC
     - Task two:
+        due: December 31, 2000
         items:
-        - ItemD
-        - ItemE
-        - ItemF
     "
   end
 
@@ -35,6 +34,21 @@ describe(Tildone::List) do
 
   it 'can enumerate items' do
     task_items = list.tasks.map { |t| t.items }
-    expect(task_items).to eq [%w{ItemA ItemB ItemC}, %w{ItemD ItemE ItemF}]
+    expect(task_items).to eq [%w{ItemA ItemB ItemC}, nil]
+  end
+
+  it 'can tell if a task is complete' do
+    task_completed = list.tasks.map { |t| t.complete? }
+    expect(task_completed).to eq [true, false]
+  end
+
+  it 'can tell if a task is due' do
+    task_due = list.tasks.map { |t| t.due? }
+    expect(task_due).to eq [false, true]
+  end
+
+  it 'can tell if there are task items' do
+    task_items = list.tasks.map { |t| t.items? }
+    expect(task_items).to eq [true, false]
   end
 end

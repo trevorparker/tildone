@@ -14,7 +14,8 @@ Mercenary.program(:td) do |p|
     c.option 'file', '--file FILE', 'Location of the tildone tasks file'
 
     c.action do |_, options|
-      puts Tildone::List.new(options).tasks
+      tasks = Tildone::List.new(options).tasks
+      puts tasks.each_with_index.map { |t, i| "#{i + 1}. #{t}" }.join("\n")
     end
   end
 

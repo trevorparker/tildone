@@ -1,7 +1,7 @@
 module Tildone
   # An individual Tildone task
   class Task
-    attr_reader :summary, :items
+    attr_accessor :summary, :complete, :due, :items
 
     def initialize(args = {})
       @task = args[:task]
@@ -12,8 +12,22 @@ module Tildone
       end
     end
 
+    def complete?
+      @complete ? true : false
+    end
+
+    def due?
+      @due && DateTime.parse(@due).to_time.to_i < Time.now.to_i ? true : false
+    end
+
+    def items?
+      @items && @items.size ? true : false
+    end
+
     def to_s
-      "#{summary} - items #{items.join(', ')}"
+      task_string = [summary]
+      task_string << "due #{due}" if due
+      task_string.join(' - ')
     end
   end
 end
