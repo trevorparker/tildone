@@ -16,5 +16,16 @@ module Tildone
     def tasks
       @tasks ||= @tasks_raw.map { |t| Tildone::Task.new(task: t) }
     end
+
+    def to_yaml
+      task_structure = tasks.map do |t|
+        {
+          t.summary => {
+          'complete' => t.complete, 'items' => t.items, 'due' => t.due
+          }
+        }
+      end
+      task_structure.to_yaml
+    end
   end
 end
