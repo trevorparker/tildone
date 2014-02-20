@@ -29,5 +29,13 @@ module Tildone
       task_string << "due #{due}" if due
       task_string.join(' - ')
     end
+
+    def to_hash
+      hash = {}
+      instance_variables.each do |iv|
+        hash[iv.to_s.delete('@')] = instance_variable_get(iv)
+      end
+      hash
+    end
   end
 end

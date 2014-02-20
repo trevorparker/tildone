@@ -19,11 +19,8 @@ module Tildone
 
     def to_yaml
       task_structure = tasks.map do |t|
-        {
-          t.summary => {
-          'complete' => t.complete, 'items' => t.items, 'due' => t.due
-          }
-        }
+        details = t.to_hash.select { |k, v| k != 'summary' }
+        { t.summary => details }
       end
       task_structure.to_yaml
     end
