@@ -24,12 +24,12 @@ describe(Tildone::List) do
 
   let(:list) do
     File.open('.tildone', 'w') { |f| f << tasks_file }
-    Tildone::List.new('file' => '.tildone')
+    Tildone::List.new 'file' => '.tildone'
   end
 
   let(:list_reconstituted) do
     File.open('.tildone', 'w') { |f| f << tasks_file_reconstituted }
-    Tildone::List.new('file' => '.tildone')
+    Tildone::List.new 'file' => '.tildone'
   end
 
   it 'can open a tasks file' do

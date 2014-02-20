@@ -10,11 +10,11 @@ module Tildone
         fail ArgumentError, "File #{@file} does not exist"
       end
 
-      @tasks_raw = YAML.load_file(@file)
+      @tasks_raw = YAML.load_file @file
     end
 
     def tasks
-      @tasks ||= @tasks_raw.map { |t| Tildone::Task.new(task: t) }
+      @tasks ||= @tasks_raw.map { |t| Tildone::Task.new task: t }
     end
 
     def to_yaml

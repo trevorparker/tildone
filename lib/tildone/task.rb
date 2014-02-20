@@ -8,7 +8,7 @@ module Tildone
       @summary = @task.keys[0]
       @body = @task.values[0]
       @body.each do |k, v|
-        instance_variable_set("@#{k}", v)
+        instance_variable_set "@#{k}", v
       end
     end
 
@@ -27,13 +27,13 @@ module Tildone
     def to_s
       task_string = [summary]
       task_string << "due #{due}" if due
-      task_string.join(' - ')
+      task_string.join ' - '
     end
 
     def to_hash
       hash = {}
       instance_variables.each do |iv|
-        hash[iv.to_s.delete('@')] = instance_variable_get(iv)
+        hash[iv.to_s.delete '@'] = instance_variable_get iv
       end
       hash
     end
