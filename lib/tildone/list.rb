@@ -17,6 +17,11 @@ module Tildone
       @tasks ||= @tasks_raw.map { |t| Tildone::Task.new task: t }
     end
 
+    def persist(args = {})
+      file = args[:file] || @file
+      File.open(file, 'w') { |f| f.write to_yaml }
+    end
+
     def to_yaml
       task_structure = tasks.map do |t|
         details = t.to_hash.select { |k, v| k != 'summary' }

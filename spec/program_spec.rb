@@ -18,17 +18,15 @@ describe(Tildone::List) do
     "
   end
 
-  let(:tasks_file_reconstituted) do
-    list.to_yaml
-  end
-
   let(:list) do
     File.open('.tildone', 'w') { |f| f << tasks_file }
     Tildone::List.new 'file' => '.tildone'
   end
 
   let(:list_reconstituted) do
-    File.open('.tildone', 'w') { |f| f << tasks_file_reconstituted }
+    l = list
+    File.open('.tildone', 'w') {}
+    l.persist
     Tildone::List.new 'file' => '.tildone'
   end
 
